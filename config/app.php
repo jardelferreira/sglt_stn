@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Yajra\Acl\AclServiceProvider::class,
 
         /*
          * Application Service Providers...
