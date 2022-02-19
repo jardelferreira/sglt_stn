@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'SGLT',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>SGLT</b> - STN',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -255,9 +255,10 @@ return [
         ],
         ['header' => 'account_settings'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
+            'text' => 'Usuários',
+            'url'  => 'dashboard/usuarios',
             'icon' => 'fas fa-fw fa-user',
+            // 'can'  => 'maneger-user'
         ],
         [
             'text' => 'change_password',
@@ -265,43 +266,40 @@ return [
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
-            'text'    => 'multilevel',
+            'text'    => 'Controle de acesso',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
+                   [
+                    'text'    => 'Permissões',
                     'url'     => '#',
                     'submenu' => [
                         [
-                            'text' => 'level_two',
+                            'text' => 'Gerenciar',
                             'url'  => '#',
                         ],
                         [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
+                            'text' => 'Criar',
+                            'url'  => '#',
                         ],
                     ],
                 ],
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text'    => 'Funções',
+                    'url'     => '#',
+                    'submenu' => [
+                        [
+                            'text' => 'Gerenciar',
+                            'url'  => '#',
+                        ],
+                        [
+                            'text' => 'Criar',
+                            'url'  => '#',
+                        ],
+                    ],
                 ],
             ],
         ],
+
         ['header' => 'labels'],
         [
             'text'       => 'important',
