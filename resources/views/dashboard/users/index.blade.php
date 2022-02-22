@@ -7,6 +7,7 @@
 @stop
 
 @section('content')
+@if (count($users))
     <table class="table table-striped table-inverse table-responsive">
         <thead class="thead-inverse">
             <tr>
@@ -16,7 +17,6 @@
             </tr>
             </thead>
             <tbody>
-               @if (count($users))
                @foreach ($users as $item)
                <tr>
                    <td scope="row">{{$item->name}}</td>

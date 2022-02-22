@@ -2,16 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
+use Yajra\Acl\Models\Permission;
 
-class UserController extends Controller
+class PermissionController extends Controller
 {
-
-    public function __construct()
-    {
-        // $this->middleware('manager-user');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return \view('dashboard/users.index',[
-            'users' => User::all()
+        return \view('dashboard.permissions.index',[
+            'permissions' => Permission::all()
         ]);
     }
 
@@ -31,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return \view('dashboard/users.create');
+        return \view('dashboard.permissions.create');
     }
 
     /**
@@ -40,12 +35,12 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, User $user)
+    public function store(Request $request)
     {
-        $user->create($request->all());
+        Permission::create($request->all());
 
-        return redirect()->route('dashboard.users',[
-            'users' => User::all()
+        return \redirect()->route('dashboard.permissions',[
+            'permissions' => Permission::all()
         ]);
     }
 
@@ -55,10 +50,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(int $id)
     {
-        return view('dashboard/users/show',[
-            'user' => $user
+        $permission = Permission::where('id',$id)->first();
+
+        return view('dashboard.permissions.show',[
+            'permission' => $permission
         ]);
     }
 
@@ -68,11 +65,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($user)
+    public function edit(int $id)
     {
-        return view('dashboard/users.edit',[
-            'user' => User::where('id',$user)->first()]
-        );
+        $permission = Permission::where('id',$id)->first();
+
+        return view('dashboard.permissions.edit',[
+            'permission' => $permission
+        ]);
     }
 
     /**
@@ -84,13 +83,12 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
-        $user = User::where('id',$request->id)->first();
-
-        $user->update($request->all());
-
-        return redirect()->route('dashboard.users.show',[
-            'user' => User::where('id',$user->id)->first()
-        ]);
+       
+        $permission = Permission::where('id',$request->id)->first();
+        // dd($permission);
+        $permission->update($request->all());
+        
+        return \redirect()->route('dashboard.permissions');
     }
 
     /**
@@ -101,12 +99,12 @@ class UserController extends Controller
      */
     public function destroy(Request $request)
     {
-        $user = User::where('id',$request->user);
+        $permission = Permission::where('id',$request->id)->first();
 
-        $user->delete();
+        $permission->delete();
 
-        return redirect()->route('dashboard.users',[
-            'users' => User::all()
+        return \redirect()->route('dashboard.permissions',[
+            'permissions' => Permission::all()
         ]);
     }
 }

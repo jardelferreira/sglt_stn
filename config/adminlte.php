@@ -256,7 +256,13 @@ return [
         ['header' => 'account_settings'],
         [
             'text' => 'Usuários',
-            'url'  => 'dashboard/usuarios',
+            'route'  => 'dashboard.users',
+            'icon' => 'fas fa-fw fa-user',
+            // 'can'  => 'maneger-user'
+        ],
+        [
+            'text' => 'Permissões',
+            'route'  => 'dashboard.permissions',
             'icon' => 'fas fa-fw fa-user',
             // 'can'  => 'maneger-user'
         ],
