@@ -2,16 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use Yajra\Acl\Models\Role;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class RoleController extends Controller
 {
-
-    public function __construct()
-    {
-        // $this->middleware('manager-user');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return \view('dashboard/users.index',[
-            'users' => User::all()
+        return \view('dashboard/roles.index',[
+            'roles' => Role::all()
         ]);
     }
 
@@ -31,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return \view('dashboard/users.create');
+        return view('dashboard/roles.create');
     }
 
     /**
@@ -40,13 +35,14 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, User $user)
+    public function store(Request $request)
     {
-        $user->create($request->all());
+        Role::create($request->all());
 
-        return redirect()->route('dashboard.users',[
-            'users' => User::all()
+        return redirect()->route('dashboard.roles',[
+            'roles' => Role::all()
         ]);
+        
     }
 
     /**
@@ -55,11 +51,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Request $request)
     {
-        return view('dashboard/users/show',[
-            'user' => $user
+        $role = Role::where('id',$request->id)->first();
+
+        return \view('dashboard/roles.show',[
+            'role' => $role
         ]);
+
     }
 
     /**
@@ -68,11 +67,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($user)
+    public function edit(Request $request)
     {
-        return view('dashboard/users.edit',[
-            'user' => User::where('id',$user)->first()]
-        );
+        $role = Role::where('id',$request->id)->first();
+
+        return view('dashboard/roles.edit',[
+            'role' => $role
+        ]);
     }
 
     /**
@@ -84,12 +85,12 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
-        $user = User::where('id',$request->id)->first();
+        $role = Role::where('id',$request->id)->first();
 
-        $user->update($request->all());
+        $role->update($request->all());
 
-        return redirect()->route('dashboard.users.show',[
-            'user' => User::where('id',$user->id)->first()
+        return redirect()->route('dashboard.roles',[
+            'roles' =>  Role::all()
         ]);
     }
 
@@ -101,13 +102,12 @@ class UserController extends Controller
      */
     public function destroy(Request $request)
     {
-        $user = User::where('id',$request->user);
+        $role = Role::where('id',$request->id)->first();
 
-        $user->delete();
+        $role->delete();
 
-        return redirect()->route('dashboard.users',[
-            'users' => User::all()
+        return redirect()->route('dashboard.roles',[
+            'roles' => Role::all()
         ]);
     }
-
 }

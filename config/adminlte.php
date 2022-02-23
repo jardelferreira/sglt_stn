@@ -267,6 +267,12 @@ return [
             // 'can'  => 'maneger-user'
         ],
         [
+            'text' => 'Funções',
+            'route'  => 'dashboard.roles',
+            'icon' => 'fas fa-fw fa-user',
+            // 'can'  => 'maneger-user'
+        ],
+        [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',

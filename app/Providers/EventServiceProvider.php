@@ -3,13 +3,15 @@
 namespace App\Providers;
 
 use App\Models\User;
-use App\Observers\PermissionObserver;
+use Yajra\Acl\Models\Role;
+use App\Observers\RoleObserver;
 use App\Observers\UserObserver;
+use Yajra\Acl\Models\Permission;
+use App\Observers\PermissionObserver;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Yajra\Acl\Models\Permission;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -33,5 +35,6 @@ class EventServiceProvider extends ServiceProvider
     {
         User::observe(UserObserver::class);
         Permission::observe(PermissionObserver::class);
+        Role::observe(RoleObserver::class);
     }
 }

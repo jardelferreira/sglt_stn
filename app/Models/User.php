@@ -2,16 +2,19 @@
 
 namespace App\Models;
 
+use Yajra\Acl\Models\Role;
 use Yajra\Acl\Traits\HasRole;
+use Yajra\Acl\Models\Permission;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Yajra\Acl\Traits\HasRoleAndPermission;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRole;
+    use HasApiTokens, HasFactory, Notifiable, HasRoleAndPermission;
 
     /**
      * The attributes that are mass assignable.
@@ -42,4 +45,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function permissions()
+    {
+        return $this->hasMany(Permission::class);
+    }
+
+    public function roles()
+    {
+        return $this->hasMany(Role::class);
+    }
 }

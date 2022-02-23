@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,17 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
         Route::put('/',[PermissionController::class,'update'])->name('dashboard.permissions.update');
         Route::post('/',[PermissionController::class,'store'])->name('dashboard.permissions.store');
         Route::delete('/',[PermissionController::class,'destroy'])->name('dashboard.permissions.destroy');
+  
+    });
+
+    Route::prefix('funcoes')->group(function(){
+        Route::get('/',[RoleController::class,'index'])->name('dashboard.roles');
+        Route::get('/{id}/editar',[RoleController::class,'edit'])->name('dashboard.roles.edit');
+        Route::get('/criar',[RoleController::class,'create'])->name('dashboard.roles.create');
+        Route::get('/{id}',[RoleController::class,'show'])->name('dashboard.roles.show');
+        Route::put('/',[RoleController::class,'update'])->name('dashboard.roles.update');
+        Route::post('/',[RoleController::class,'store'])->name('dashboard.roles.store');
+        Route::delete('/',[RoleController::class,'destroy'])->name('dashboard.roles.destroy');
   
     });
 
