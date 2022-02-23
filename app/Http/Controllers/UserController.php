@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Yajra\Acl\Models\Role;
 use Illuminate\Http\Request;
+use Yajra\Acl\Models\Permission;
 
 class UserController extends Controller
 {
@@ -57,6 +59,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        // dd($user->roles()->get());
         return view('dashboard/users/show',[
             'user' => $user
         ]);
@@ -107,6 +110,40 @@ class UserController extends Controller
 
         return redirect()->route('dashboard.users',[
             'users' => User::all()
+        ]);
+    }
+
+    public function permissions(int $id)
+    {
+
+        // $array = (User::find($id)->permissions()->pluck('permission_id')->toArray());
+        // dd(array_key_exists('0',$array));
+        return view('dashboard/users.permissions',[
+            'user' => User::where('id',$id)->first(),
+            'permissions' => Permission::all(),
+            'user_permissions' => User::find($id)->permissions()->pluck('permission_id')->toArray()
+        ]);
+    }
+    
+    public function roles(int $id)
+    {
+
+        // $array = (User::find($id)->roles()->pluck('permission_id')->toArray());
+        // dd(array_key_exists('0',$array));
+        return view('dashboard/users.roles',[
+            'user' => User::where('id',$id)->first(),
+            'roles' => Role::all(),
+            'user_roles' => User::find($id)->roles()->pluck('permission_id')->toArray()
+        ]);
+    }
+
+    public function permissionsUpdate(User $user,Request $request)
+    {
+
+        $user->syncPermissions($request->permissions);
+
+        return redirect()->route('dashboard.users.show',[
+            'user' => $user
         ]);
     }
 

@@ -145,34 +145,29 @@
                   <div class="card h-100">
                     <div class="card-body">
                       <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Permissões e Funções </i>para Jardel </h6>
-                      <h6>Funções:</h6>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                        <label class="form-check-label" for="inlineCheckbox1">1</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <label class="form-check-label" for="inlineCheckbox2">2</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
-                        <label class="form-check-label" for="inlineCheckbox3">3 (disabled)</label>
-                      </div>
+                      <h6>Permissões: - <a name="" id="" class="btn btn-primary btn-sm" href="{{route('dashboard.users.roles',['id'=>$user->id])}}" role="button">Adicionar Funções</a></h6>
+                      @if (count($user->roles))
+                      <ul class="list-group list-group-flush">
+                        @foreach ($user->roles as $role)
+                        <li class="list-group-item"><a href="#"><i class="fa fa-check text-success" aria-hidden="true">{{$role->name}}</a></li>
+                       
+                        @endforeach
+                      </ul>    
+                      
+                       @else
+                          <p>O usuário ainda não possui Funções</p>
+                      @endif                    
                       <hr>
-                      <h6>Permissões:</h6>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                        <label class="form-check-label" for="inlineCheckbox1">1</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <label class="form-check-label" for="inlineCheckbox2">2</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
-                        <label class="form-check-label" for="inlineCheckbox3">3 (disabled)</label>
-                      </div>
-                      <hr>
+                      <h6>Permissões: - <a name="" id="" class="btn btn-success btn-sm" href="{{route('dashboard.users.permissions',['id'=>$user->id])}}" role="button">Adicionar Permissões</a></h6>
+                      @if (count($user->permissions))
+                      <ul class="list-group list-group-flush">
+                      @foreach ($user->permissions as $permission)
+                        <li class="list-group-item"><a href="#"><i class="fa fa-check text-success" aria-hidden="true"></i> {{$permission->name}}</a></li>
+                        @endforeach
+                      </ul>
+                       @else
+                          <p>O usuário ainda não possui permissões</p>
+                      @endif
                     </div>
                   </div>
                 </div>

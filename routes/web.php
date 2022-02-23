@@ -36,6 +36,10 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
     
         Route::delete('/', [UserController::class, 'destroy'])->name('dashboard.users.destroy');
         Route::put('/', [UserController::class, 'update'])->name('dashboard.users.update');
+
+        Route::get('{id}/permissoes',[UserController::class,'permissions'])->name('dashboard.users.permissions');
+        Route::put('{user}/permissoes/update',[UserController::class,'permissionsUpdate'])->name('dashboard.users.permissions.update');
+        Route::get('{id}/funcoes',[UserController::class,'roles'])->name('dashboard.users.roles');
     });
 
     Route::prefix('permissoes')->group(function(){
