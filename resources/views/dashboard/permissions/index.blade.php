@@ -21,6 +21,7 @@
                    <td scope="row">{{$item->name}}</td>
                    <td class="btn-group" role="group">
                        <a class="btn btn-info btn-sm mr-1" href="{{route('dashboard.permissions.edit',['id' => $item->id])}}" >Editar</a>
+                       <a class="btn btn-warning btn-sm mr-1" href="{{route('dashboard.permissions.roles',['permission' => $item->id])}}" >Vincular</a>
                         <form action="{{route('dashboard.permissions.destroy',['id' => $item->id])}}" method="POST">
                             @csrf
                             @method('DELETE')

@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
         Route::get('{id}/permissoes',[UserController::class,'permissions'])->name('dashboard.users.permissions');
         Route::put('{user}/permissoes/update',[UserController::class,'permissionsUpdate'])->name('dashboard.users.permissions.update');
         Route::get('{id}/funcoes',[UserController::class,'roles'])->name('dashboard.users.roles');
+        Route::put('{user}/funcoes/update',[UserController::class,'rolesUpdate'])->name('dashboard.users.roles.update');
     });
 
     Route::prefix('permissoes')->group(function(){
@@ -47,6 +49,9 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
         Route::get('/{id}/editar',[PermissionController::class,'edit'])->name('dashboard.permissions.edit');
         Route::get('/criar',[PermissionController::class,'create'])->name('dashboard.permissions.create');
         Route::get('/{id}',[PermissionController::class,'show'])->name('dashboard.permissions.show');
+        Route::get('/{permission}/vincular',[PermissionController::class,'roles'])->name('dashboard.permissions.roles');
+        
+        Route::put('/{permission}/update',[PermissionController::class,'syncRolesById'])->name('dashboard.permissions.sync');
         Route::put('/',[PermissionController::class,'update'])->name('dashboard.permissions.update');
         Route::post('/',[PermissionController::class,'store'])->name('dashboard.permissions.store');
         Route::delete('/',[PermissionController::class,'destroy'])->name('dashboard.permissions.destroy');

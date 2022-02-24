@@ -133,7 +133,7 @@ class UserController extends Controller
         return view('dashboard/users.roles',[
             'user' => User::where('id',$id)->first(),
             'roles' => Role::all(),
-            'user_roles' => User::find($id)->roles()->pluck('permission_id')->toArray()
+            'user_roles' => User::find($id)->roles()->pluck('role_id')->toArray()
         ]);
     }
 
@@ -141,6 +141,16 @@ class UserController extends Controller
     {
 
         $user->syncPermissions($request->permissions);
+
+        return redirect()->route('dashboard.users.show',[
+            'user' => $user
+        ]);
+    }
+
+    public function rolesUpdate(User $user,Request $request)
+    {
+
+        $user->syncRoles($request->roles);
 
         return redirect()->route('dashboard.users.show',[
             'user' => $user

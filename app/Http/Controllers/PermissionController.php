@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Yajra\Acl\Models\Role;
 use Illuminate\Http\Request;
 use Yajra\Acl\Models\Permission;
 
@@ -105,6 +106,27 @@ class PermissionController extends Controller
 
         return \redirect()->route('dashboard.permissions',[
             'permissions' => Permission::all()
+        ]);
+    }
+
+    public function roles(Permission $permission)
+    {
+        return view('dashboard/permissions.roles',[
+            'permission' => $permission,
+            'roles' => Role::all(),
+            'permission_roles' => $permission->roles()->pluck('role_id')->toArray()
+        ]);
+    }
+
+    public function syncRolesById(Permission $permission, Request $request)
+    {
+        // dd($permission->roles()->pluck('role_id')->toArray());
+        $permission->syncRoles($request->roles);
+
+        return redirect()->route('dashboard.permissions.roles',[
+            'permission' => $permission,
+            'roles' => Role::all(),
+            'permission_roles' => $permission->roles()->pluck('role_id')->toArray()
         ]);
     }
 }

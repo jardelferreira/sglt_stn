@@ -3,7 +3,7 @@
 @section('title','funções')
 
 @section('content_header')
-    <h4>Adicionar funções - {{$user->name}} - <a name="" id="" class="btn btn-success btn-sm" href="{{route('dashboard.roles.create')}}" role="button">Criar nova Função- <i class="fa fa-plus" aria-hidden="true"></i></a></h4>
+    <h4>Vincular função para - <small class="text-primary">{{$permission->name}}</small> - <a name="" id="" class="btn btn-success btn-sm" href="{{route('dashboard.roles.create')}}" role="button">Criar nova Função- <i class="fa fa-plus" aria-hidden="true"></i></a></h4>
 @stop
 
 @section('content')
@@ -13,19 +13,19 @@
         <thead class="thead-inverse">
             <tr>
                 <th>#</th>
-                <th>funções</th>
+                <th>Marque as funções que deseja vincular a esta permissão</th>
             </tr>
             </thead>
             <tbody>
-                <form action="{{route('dashboard.users.roles.update',$user->id)}}" method="post">
+                <form action="{{route('dashboard.permissions.sync',['permission' => $permission->id])}}" method="post">
                     @csrf
                     @method('PUT')
-                    <button type="submit" class="btn btn-primary">Atualizar Funções do usuário</button>
+                    <button type="submit" class="btn btn-primary">Atualizar Funções vinculadas à permissão</button>
                @foreach ($roles as $item)
                <tr>
                    <td>
                        <div class="form-check">
-                           <input class="form-check-input" name="roles[]" @if(in_array($item->id,$user_roles))
+                           <input class="form-check-input" name="roles[]" @if(in_array($item->id,$permission_roles))
                                checked
                            @endif
                            name="{{$item->id}}" id="{{$item->id}}" type="checkbox" value="{{$item->id}}" aria-label="Permissão">

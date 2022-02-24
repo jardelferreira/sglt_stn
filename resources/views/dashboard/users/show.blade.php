@@ -145,12 +145,12 @@
                   <div class="card h-100">
                     <div class="card-body">
                       <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Permissões e Funções </i>para Jardel </h6>
-                      <h6>Permissões: - <a name="" id="" class="btn btn-primary btn-sm" href="{{route('dashboard.users.roles',['id'=>$user->id])}}" role="button">Adicionar Funções</a></h6>
+                      <h6>Funções: - <a name="" id="" class="btn btn-primary btn-sm" href="{{route('dashboard.users.roles',['id'=>$user->id])}}" role="button">Adicionar Funções</a></h6>
                       @if (count($user->roles))
                       <ul class="list-group list-group-flush">
                         @foreach ($user->roles as $role)
-                        <li class="list-group-item"><a href="#"><i class="fa fa-check text-success" aria-hidden="true">{{$role->name}}</a></li>
-                       
+                        <li class="list-group-item"><a href="#"><i class="fa fa-check text-success" aria-hidden="true"></i> {{$role->name}}</a></li>
+
                         @endforeach
                       </ul>    
                       
