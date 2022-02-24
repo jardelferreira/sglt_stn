@@ -139,7 +139,7 @@ class UserController extends Controller
 
     public function permissionsUpdate(User $user,Request $request)
     {
-
+        
         $user->syncPermissions($request->permissions);
 
         return redirect()->route('dashboard.users.show',[

@@ -10,7 +10,7 @@
 @section('content')
 
 @if (count($permissions))
-<form action="{{route('dashboard.users.roles.update',$user->id)}}" method="post">
+<form action="{{route('dashboard.users.permissions.update',$user->id)}}" method="post">
     @csrf
     @method('PUT')
     <button type="submit" class="btn btn-primary">Atualizar permissões do usuário</button>
