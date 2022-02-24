@@ -149,7 +149,8 @@
                       @if (count($user->roles))
                       <ul class="list-group list-group-flush">
                         @foreach ($user->roles as $role)
-                        <li class="list-group-item"><a href="#"><i class="fa fa-check text-success" aria-hidden="true"></i> {{$role->name}}</a></li>
+                        <li class="list-group-item"><a href="{{route('dashboard.roles.show',['role' => $role])}}">
+                          <i class="fa fa-check text-success" aria-hidden="true"></i> {{$role->name}}</a></li>
 
                         @endforeach
                       </ul>    

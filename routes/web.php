@@ -62,7 +62,11 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
         Route::get('/',[RoleController::class,'index'])->name('dashboard.roles');
         Route::get('/{id}/editar',[RoleController::class,'edit'])->name('dashboard.roles.edit');
         Route::get('/criar',[RoleController::class,'create'])->name('dashboard.roles.create');
-        Route::get('/{id}',[RoleController::class,'show'])->name('dashboard.roles.show');
+        Route::get('/{role}/funcao',[RoleController::class,'show'])->name('dashboard.roles.show');
+        Route::get('/{role}/vincular',[RoleController::class,'permissions'])->name('dashboard.roles.permissions');
+        
+        
+        Route::put('/{role}/update',[RoleController::class,'syncPermissionsById'])->name('dashboard.roles.sync');
         Route::put('/',[RoleController::class,'update'])->name('dashboard.roles.update');
         Route::post('/',[RoleController::class,'store'])->name('dashboard.roles.store');
         Route::delete('/',[RoleController::class,'destroy'])->name('dashboard.roles.destroy');

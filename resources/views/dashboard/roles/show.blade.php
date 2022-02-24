@@ -4,19 +4,15 @@
 
 @section('content')
 <div class="container">
-  <form action="{{route('dashboard.permissions.update')}}" method="post">
-   @csrf
-   @method('PUT')
-      <div class="mb-3">
-      <label for="name" class="form-label">Nome da permissão</label>
-        <input type="text" value="{{$permission->name}}"
-         class="form-control" name="name" id="name" aria-describedby="helpName" placeholder="">
-        <small id="helpName" class="form-text text-muted">Informe o nome da Permissão</small>
-      </div>
-      <button type="submit" class="btn btn-primary">Salvar</button>
-  </form>
-@endsection
+  <ul class="list-group">
+    <li class="list-group-item active">{{$role->name}} <a name="" id="" class="btn btn-light ml-5" href="{{route('dashboard.roles.permissions',$role)}}" role="button">Atribuir novas permissões</a></li>
+    <li class="list-group-item list-group-item-warning">Permissões atribuídas a esta função</li>
+    @foreach ($role->getPermissions() as $key => $item)
+    <li class="list-group-item">{{$loop->index + 1}} - {{$item}}</li>
+    @endforeach
+  </ul>
 </div>
+@endsection
 
 
 @section('css')

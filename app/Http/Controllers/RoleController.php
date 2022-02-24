@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Yajra\Acl\Models\Role;
 use Illuminate\Http\Request;
+use Yajra\Acl\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -51,10 +52,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show(Role $role)
     {
-        $role = Role::where('id',$request->id)->first();
-
+        // dd($role->getPermissions());
         return \view('dashboard/roles.show',[
             'role' => $role
         ]);
@@ -109,5 +109,26 @@ class RoleController extends Controller
         return redirect()->route('dashboard.roles',[
             'roles' => Role::all()
         ]);
+    }
+
+    public function permissions(Role $role)
+    {   // dd($role->getPermissions());
+        return view('dashboard/roles.permissions',[
+            'role' => $role,
+            'permissions' => Permission::all(),
+            'role_permissions' => $role->getPermissions()
+        ]);
+    }
+
+    public function syncPermissionsById(Role $role, Request $request)
+    {
+        $role->syncPermissions($request->permissions);
+
+        return redirect()->route('dashboard.roles.permissions',[
+            'role' => $role,
+            'permissions' => Permission::all(),
+            'role_permissions' => $role->getPermissions()
+        ]);
+
     }
 }
