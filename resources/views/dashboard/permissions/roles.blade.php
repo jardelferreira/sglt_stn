@@ -9,11 +9,12 @@
 @section('content')
 
 @if (count($roles))
-    <table class="table table-striped table-inverse table-responsive">
+    <table class="table table-striped table-inverse table-responsive table-bordered">
         <thead class="thead-inverse">
             <tr>
                 <th>#</th>
                 <th>Marque as funções que deseja vincular a esta permissão</th>
+                <th>Descrição</th>
             </tr>
             </thead>
             <tbody>
@@ -32,6 +33,7 @@
                         </div>
                     </td>
                     <td scope="row">{{$item->name}}</td>
+                    <td scope="row">{{$item->description}}</td>
                </tr>
                @endforeach
             </tbody>

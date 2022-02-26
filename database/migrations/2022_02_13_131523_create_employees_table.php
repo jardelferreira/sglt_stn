@@ -15,11 +15,17 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->string('office')->unique();
-            $table->string('description');
+            $table->foreignId('office_id')->references('id')->on('offices')->onDelete('cascade');
             $table->string('registration')->unique();
-            $table->foreignId('project_id')->references('id')->on('projects')->onDelete('cascade');
+            $table->date('adimission')->nullable();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
+        });
+
+        Schema::create('employee_project', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->foreignId('project_id')->references('id')->on('projects')->onDelete('cascade');
+            $table->foreignId('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +37,8 @@ class CreateEmployeesTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('employee_project');
         Schema::dropIfExists('employees');
     }
 }

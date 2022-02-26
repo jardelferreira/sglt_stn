@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProjectsTable extends Migration
+class CreateOfficesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,23 @@ class CreateProjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('offices', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug');
-            $table->longText('description')->nullable();
-            $table->string('initials')->unique();
+            $table->string('description');
+            $table->string('salary');
+            $table->boolean('aditional');
+            $table->decimal('percent',2,2,true);
             $table->timestamps();
         });
-
-        Schema::create('project_user', function(Blueprint $table){
-            $table->id();
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+        
+        Schema::create('office_project', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->foreignId('project_id')->references('id')->on('projects')->onDelete('cascade');
-            $table->date('admission')->nullable();
+            $table->foreignId('office_id')->references('id')->on('offices')->onDelete('cascade');
             $table->timestamps();
-
         });
+
     }
 
     /**
@@ -40,7 +40,7 @@ class CreateProjectsTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('project_user');
-        Schema::dropIfExists('projects');
+        Schema::dropIfExists('office_project');
+        Schema::dropIfExists('offices');
     }
 }

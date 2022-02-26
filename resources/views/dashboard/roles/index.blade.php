@@ -12,6 +12,7 @@
         <thead class="thead-inverse">
             <tr>
                 <th>funções</th>
+                <th>Descrição</th>
                 <th>Ações</th>
             </tr>
             </thead>
@@ -19,6 +20,7 @@
                @foreach ($roles as $item)
                <tr>
                    <td scope="row">{{$item->name}}</td>
+                   <td scope="row">{{$item->description}}</td>
                    <td class="btn-group" role="group">
                        <a class="btn btn-info btn-sm mr-1" href="{{route('dashboard.roles.edit',['id' => $item->id])}}" >Editar</a>
                        <a class="btn btn-warning btn-sm mr-1" href="{{route('dashboard.roles.permissions',$item)}}" >Vincular</a>

@@ -55,4 +55,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class);
     }
+
+    public function adminlte_profile_url()
+    {
+        return \route('dashboard.users.show',\auth()->user()->id);
+    }
 }
