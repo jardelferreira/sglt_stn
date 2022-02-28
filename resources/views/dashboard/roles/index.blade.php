@@ -12,7 +12,7 @@
         <thead class="thead-inverse">
             <tr>
                 <th>funções</th>
-                <th>Descrição</th>
+                <th>Descrição</th> 
                 <th>Ações</th>
             </tr>
             </thead>

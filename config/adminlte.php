@@ -258,7 +258,7 @@ return [
             'text' => 'Usuários',
             'route'  => 'dashboard.users',
             'icon' => 'fas fa-fw fa-user',
-            'can'  => 'gerenciar-usuario'
+            'can'  => 'gerenciar-usuarios'
         ],
         [
             'text' => 'Permissões',
@@ -269,6 +269,12 @@ return [
         [
             'text' => 'Funções',
             'route'  => 'dashboard.roles',
+            'icon' => 'fas fa-fw fa-user',
+            // 'can'  => 'maneger-user'
+        ],
+        [
+            'text' => 'Projetos',
+            'route'  => 'dashboard.projects',
             'icon' => 'fas fa-fw fa-user',
             // 'can'  => 'maneger-user'
         ],

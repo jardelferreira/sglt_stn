@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use Yajra\Acl\Models\Role;
-use Yajra\Acl\Traits\HasRole;
-use Yajra\Acl\Models\Permission;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Yajra\Acl\Traits\HasRoleAndPermission;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Yajra\Acl\Models\Role;
+use Yajra\Acl\Traits\HasRole;
+use Yajra\Acl\Models\Permission;
 
 class User extends Authenticatable
 {

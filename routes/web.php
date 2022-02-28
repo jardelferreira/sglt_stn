@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,5 +74,15 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
   
     });
 
+    Route::prefix('projects')->group(function(){
+        Route::get('/',[ProjectController::class,'index'])->name('dashboard.projects');
+        Route::get('/criar',[ProjectController::class,'create'])->name('dashboard.projects.create');
+        Route::get('/{project}',[ProjectController::class,'show'])->name('dashboard.projects.show');
+        Route::get('/{project}/editar',[ProjectController::class,'edit'])->name('dashboard.projects.edit');
+        
+        Route::post('/',[ProjectController::class,'store'])->name('dashboard.projects.store');
+        Route::put('/',[ProjectController::class,'update'])->name('dashboard.projects.update');
+        Route::delete('/',[ProjectController::class,'delete'])->name('dashboard.projects.delete');
+    });
 
 });
