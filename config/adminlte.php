@@ -259,9 +259,18 @@ return [
                     'url'  => '#'
                 ],
                 [
-                    'text' => 'Centros de custo',
-                    'route'  => 'dashboard.costs.index'
-                ]
+                    'text' => 'Custos',
+                    'submenu' => [
+                        [
+                            'text' => 'Centros de custo',
+                            'route'  => 'dashboard.costs.index'
+                        ],
+                        [
+                            'text' => 'Setores de custo',
+                            'route'  => 'dashboard.costs_sectors.index'
+                        ],
+                    ],
+                ],
             ]
         ],
         ['header' => 'account_settings'],

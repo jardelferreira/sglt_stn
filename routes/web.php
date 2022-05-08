@@ -8,6 +8,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SectorsCostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,6 +96,18 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
         Route::post('/',[CostController::class,'store'])->name('dashboard.costs.store');
         Route::put('/',[CostController::class,'update'])->name('dashboard.costs.update');
         Route::delete('/',[CostController::class,'delete'])->name('dashboard.costs.destroy');
+        
+    });
+
+    Route::prefix('setordecustos')->group(function(){
+        Route::get('/',[SectorsCostsController::class,'index'])->name('dashboard.costs_sectors.index');
+        Route::get('/criar',[SectorsCostsController::class,'create'])->name('dashboard.costs_sectors.create');
+        Route::get('/{sector}',[SectorsCostsController::class,'show'])->name('dashboard.costs_sectors.show');
+        Route::get('/{sector}/editar',[SectorsCostsController::class,'edit'])->name('dashboard.costs_sectors.edit');
+
+        Route::post('/',[SectorsCostsController::class,'store'])->name('dashboard.costs_sectors.store');
+        Route::put('/',[SectorsCostsController::class,'update'])->name('dashboard.costs_sectors.update');
+        Route::delete('/',[SectorsCostsController::class,'delete'])->name('dashboard.costs_sectors.destroy');
         
     });
 

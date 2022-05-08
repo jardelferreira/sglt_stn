@@ -17,16 +17,15 @@ class CreateCostSectorsTable extends Migration
         Schema::create('cost_sectors', function (Blueprint $table) {
             $table->id();
             $table->string('name',155);
-            $table->foreignId('const_centers_id')->references('id')->on('cost_centers')->onDelete('cascade');
+            $table->foreignId('cost_center_id')->references('id')->on('cost_centers')->onDelete('cascade');
             $table->decimal('amount',12,2,true)->default(0,00);
             $table->timestamps();
         });
 
         Schema::create('cost_sectors_status', function(Blueprint $table){
             $table->id();
-            $table->string('name',30);
             $table->foreignId('status_id')->references('id')->on('status')->onDelete('cascade');
-            $table->foreignId('cost_sectors_id')->references('id')->on('cost_sectors')->onDelete('cascade');
+            $table->foreignId('cost_sector_id')->references('id')->on('cost_sectors')->onDelete('cascade');
             $table->decimal('percent',3,2,true)->default(0,00);
             $table->timestamps(); 
         });
@@ -39,6 +38,7 @@ class CreateCostSectorsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('cost_sectors');
         Schema::dropIfExists('cost_sectors_status');
     }
