@@ -6,10 +6,11 @@
     @if (count($projects))
     <div class="container p-0">
 
-        <a href="#" class="btn btn-primary float-right mt-n1"><i class="fas fa-plus"></i> New project</a>
+        <a href="{{route('dashboard.projects.create')}}" class="btn btn-primary float-right mt-n1"><i class="fas fa-plus"></i> New project</a>
         <h1 class="h3 mb-3">Projects</h1>
     
         <div class="row">
+            @foreach ($projects as $project)
             <div class="col-12 col-md-6 col-lg-3">
                 <div class="card">
     
@@ -27,12 +28,11 @@
                                 </div>
                             </div>
                         </div>
-                        <h5 class="card-title mb-0">Landing page redesign</h5>
+                        <h5 class="card-title mb-0"><a href="{{route('dashboard.projects.show',$project)}}"><small>{{$project->name}}</small></a></h5>
                         <div class="badge bg-success my-2">Finished</div>
                     </div>
                     <div class="card-body px-4 pt-2">
-                        <p>Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque
-                            sed ipsum.</p>
+                        <p>{{$project->description}}</p>
     
                         <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Avatar" width="28" height="28">
                         <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded-circle mr-1" alt="Avatar" width="28" height="28">
@@ -48,7 +48,8 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div>    
+            @endforeach
             <div class="col-12 col-md-6 col-lg-3">
                 <div class="card">
     

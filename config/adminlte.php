@@ -247,36 +247,57 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
+            'text'        => 'Financeiro',
             'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => 'projetos',
+                    'url'  => '#'
+                ],
+                [
+                    'text' => 'NFs',
+                    'url'  => '#'
+                ],
+                [
+                    'text' => 'Centros de custo',
+                    'route'  => 'dashboard.costs.index'
+                ]
+            ]
         ],
         ['header' => 'account_settings'],
         [
-            'text' => 'Usuários',
-            'route'  => 'dashboard.users',
-            'icon' => 'fas fa-fw fa-user',
-            'can'  => 'gerenciar-usuarios'
-        ],
-        [
-            'text' => 'Permissões',
-            'route'  => 'dashboard.permissions',
-            'icon' => 'fas fa-fw fa-user',
-            // 'can'  => 'maneger-user'
-        ],
-        [
-            'text' => 'Funções',
-            'route'  => 'dashboard.roles',
-            'icon' => 'fas fa-fw fa-user',
-            // 'can'  => 'maneger-user'
-        ],
+            'text' => 'Controle de acesso',
+            'icon' => 'fa fa-user',
+            'submenu' => [
+                [
+                    'text' => 'Usuários',
+                    'route'  => 'dashboard.users',
+                    'icon' => 'fas fa-fw fa-user',
+                    'can'  => ['manager-users','sys-admin']
+                ],
+                [
+                    'text' => 'Permissões',
+                    'route'  => 'dashboard.permissions',
+                    'icon' => 'fas fa-fw fa-user',
+                    'can'  => ['manager-permissions','sys-admin']
+                ],
+                [
+                    'text' => 'Funções',
+                    'route'  => 'dashboard.roles',
+                    'icon' => 'fas fa-fw fa-user',
+                    'can'  => [
+                        'manager-roles','sys-admin'
+                    ]
+                ],
+               
+            ]    
+        ]
+        ,
         [
             'text' => 'Projetos',
             'route'  => 'dashboard.projects',
             'icon' => 'fas fa-fw fa-user',
-            // 'can'  => 'maneger-user'
+            'can'  => ['manager-projects','sys-admin']
         ],
         [
             'text' => 'change_password',

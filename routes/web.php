@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -83,6 +84,18 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
         Route::post('/',[ProjectController::class,'store'])->name('dashboard.projects.store');
         Route::put('/',[ProjectController::class,'update'])->name('dashboard.projects.update');
         Route::delete('/',[ProjectController::class,'delete'])->name('dashboard.projects.delete');
+    });
+
+    Route::prefix('custos')->group(function(){
+        Route::get('/',[CostController::class,'index'])->name('dashboard.costs.index');
+        Route::get('/criar',[CostController::class,'create'])->name('dashboard.costs.create');
+        Route::get('/{cost}',[CostController::class,'show'])->name('dashboard.costs.show');
+        Route::get('/{cost}/editar',[CostController::class,'edit'])->name('dashboard.costs.edit');
+
+        Route::post('/',[CostController::class,'store'])->name('dashboard.costs.store');
+        Route::put('/',[CostController::class,'update'])->name('dashboard.costs.update');
+        Route::delete('/',[CostController::class,'delete'])->name('dashboard.costs.destroy');
+        
     });
 
 });

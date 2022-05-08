@@ -17,7 +17,7 @@ class CreateOfficesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->string('salary');
+            $table->decimal('salary',);
             $table->boolean('aditional');
             $table->decimal('percent',2,2,true);
             $table->timestamps();
