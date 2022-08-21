@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CostController;
+use App\Http\Controllers\DepartamentCostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -108,6 +109,17 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
         Route::post('/',[SectorsCostsController::class,'store'])->name('dashboard.costs_sectors.store');
         Route::put('/',[SectorsCostsController::class,'update'])->name('dashboard.costs_sectors.update');
         Route::delete('/',[SectorsCostsController::class,'delete'])->name('dashboard.costs_sectors.destroy');
+        
+    });
+    Route::prefix('departamentodecustos')->group(function(){
+        Route::get('/',[DepartamentCostController::class,'index'])->name('dashboard.costs_departaments.index');
+        Route::get('/criar',[DepartamentCostController::class,'create'])->name('dashboard.costs_departaments.create');
+        Route::get('/{departament}',[DepartamentCostController::class,'show'])->name('dashboard.costs_departaments.show');
+        Route::get('/{departament}/editar',[DepartamentCostController::class,'edit'])->name('dashboard.costs_departaments.edit');
+
+        Route::post('/',[DepartamentCostController::class,'store'])->name('dashboard.costs_departaments.store');
+        Route::put('/',[DepartamentCostController::class,'update'])->name('dashboard.costs_departaments.update');
+        Route::delete('/',[DepartamentCostController::class,'delete'])->name('dashboard.costs_departaments.destroy');
         
     });
 

@@ -12,4 +12,9 @@ class sectorsCosts extends Model
     protected $table = 'cost_sectors';
 
     protected $fillable = ['name','amount','cost_center_id'];
+
+    public function cost()
+    {
+        return $this->belongsTo(Cost::class,'cost_center_id','id');
+    }
 }

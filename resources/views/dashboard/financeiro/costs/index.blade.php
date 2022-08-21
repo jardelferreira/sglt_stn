@@ -20,7 +20,7 @@
                @foreach ($costs as $item)
                <tr>
                    <td scope="row">{{$item->name}}</td>
-                   <td scope="row">{{$item->project_id}}</td>
+                   <td scope="row">{{$item->project->name}}</td>
                    <td class="btn-group" role="group">
                        <a class="btn btn-info btn-sm mr-1" href="{{route('dashboard.costs.edit',$item)}}" >Editar</a>
                         <form action="{{route('dashboard.costs.destroy',['id' => $item->id])}}" method="POST">

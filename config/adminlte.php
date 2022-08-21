@@ -269,6 +269,10 @@ return [
                             'text' => 'Setores de custo',
                             'route'  => 'dashboard.costs_sectors.index'
                         ],
+                        [
+                            'text' => 'Departamentos de custo',
+                            'route'  => 'dashboard.costs_departaments.index'
+                        ],
                     ],
                 ],
             ]
@@ -306,7 +310,7 @@ return [
             'text' => 'Projetos',
             'route'  => 'dashboard.projects',
             'icon' => 'fas fa-fw fa-user',
-            'can'  => ['manager-projects','sys-admin']
+            // 'can'  => ['manager-projects','sys-admin']
         ],
         [
             'text' => 'change_password',

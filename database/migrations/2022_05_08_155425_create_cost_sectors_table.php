@@ -26,7 +26,7 @@ class CreateCostSectorsTable extends Migration
             $table->id();
             $table->foreignId('status_id')->references('id')->on('status')->onDelete('cascade');
             $table->foreignId('cost_sector_id')->references('id')->on('cost_sectors')->onDelete('cascade');
-            $table->decimal('percent',3,2,true)->default(0,00);
+            $table->decimal('percent',3,2,true)->default(0.00);
             $table->timestamps(); 
         });
     }

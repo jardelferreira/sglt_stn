@@ -7,6 +7,7 @@ use App\Models\sectorsCosts;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoresectorsCostsRequest;
 use App\Http\Requests\UpdatesectorsCostsRequest;
+use App\Models\Project;
 
 class SectorsCostsController extends Controller
 {
@@ -64,9 +65,12 @@ class SectorsCostsController extends Controller
      * @param  \App\Models\sectorsCosts  $sectorsCosts
      * @return \Illuminate\Http\Response
      */
-    public function edit(sectorsCosts $sectorsCosts)
+    public function edit(sectorsCosts $sector)
     {
-        //
+        return \view('dashboard.financeiro.setctors.edit',[
+            'sector' => $sector,
+            'costs' => Cost::all()
+        ]);
     }
 
     /**
@@ -76,9 +80,11 @@ class SectorsCostsController extends Controller
      * @param  \App\Models\sectorsCosts  $sectorsCosts
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatesectorsCostsRequest $request, sectorsCosts $sectorsCosts)
+    public function update(Request $request, sectorsCosts $sector)
     {
-        //
+        $sector->update($request->all());
+
+        return \redirect()->route('dashboard.costs_sectors.index');
     }
 
     /**

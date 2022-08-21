@@ -12,4 +12,9 @@ class Cost extends Model
     protected $table = 'cost_centers';
 
     protected $fillable = ['name','project_id'];
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
 }
