@@ -259,6 +259,10 @@ return [
                     'url'  => '#'
                 ],
                 [
+                    'text' => 'Fornecedores',
+                    'route'  => 'dashboard.providers.index'
+                ],
+                [
                     'text' => 'Custos',
                     'submenu' => [
                         [

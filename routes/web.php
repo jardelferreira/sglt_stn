@@ -9,6 +9,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\SectorsCostsController;
 
 /*
@@ -120,6 +121,17 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
         Route::post('/',[DepartamentCostController::class,'store'])->name('dashboard.costs_departaments.store');
         Route::put('/',[DepartamentCostController::class,'update'])->name('dashboard.costs_departaments.update');
         Route::delete('/',[DepartamentCostController::class,'delete'])->name('dashboard.costs_departaments.destroy');
+        
+    });
+    Route::prefix('fornecedores')->group(function(){
+        Route::get('/',[ProviderController::class,'index'])->name('dashboard.providers.index');
+        Route::get('/criar',[ProviderController::class,'create'])->name('dashboard.providers.create');
+        Route::get('/{provider}',[ProviderController::class,'show'])->name('dashboard.providers.show');
+        Route::get('/{provider}/editar',[ProviderController::class,'edit'])->name('dashboard.providers.edit');
+
+        Route::post('/',[ProviderController::class,'store'])->name('dashboard.providers.store');
+        Route::put('/',[ProviderController::class,'update'])->name('dashboard.providers.update');
+        Route::delete('/',[ProviderController::class,'delete'])->name('dashboard.providers.destroy');
         
     });
 
