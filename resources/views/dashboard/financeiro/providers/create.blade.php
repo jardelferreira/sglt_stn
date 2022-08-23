@@ -30,7 +30,7 @@
           <select class="form-control" name="headquarters" id="headquarters">
             <option value="">Selecione um projeto para o setor de custo</option>
             @foreach ($headquarters as $item)
-                <option value="{{$item->id}}">{{$item->name}}</option>
+                <option value="{{$item->id}}">{{$item->corporate_name}}</option>
             @endforeach
           </select>
         </div>

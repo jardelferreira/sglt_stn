@@ -5,6 +5,7 @@ use App\Http\Controllers\DepartamentCostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
@@ -120,7 +121,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
 
         Route::post('/',[DepartamentCostController::class,'store'])->name('dashboard.costs_departaments.store');
         Route::put('/',[DepartamentCostController::class,'update'])->name('dashboard.costs_departaments.update');
-        Route::delete('/',[DepartamentCostController::class,'delete'])->name('dashboard.costs_departaments.destroy');
+        Route::delete('/',[DepartamentCostController::class,'destroy'])->name('dashboard.costs_departaments.destroy');
         
     });
     Route::prefix('fornecedores')->group(function(){
@@ -131,7 +132,18 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
 
         Route::post('/',[ProviderController::class,'store'])->name('dashboard.providers.store');
         Route::put('/',[ProviderController::class,'update'])->name('dashboard.providers.update');
-        Route::delete('/',[ProviderController::class,'delete'])->name('dashboard.providers.destroy');
+        Route::delete('/',[ProviderController::class,'destroy'])->name('dashboard.providers.destroy');
+        
+    });
+    Route::prefix('notas')->group(function(){
+        Route::get('/',[InvoiceController::class,'index'])->name('dashboard.invoices.index');
+        Route::get('/criar',[InvoiceController::class,'create'])->name('dashboard.invoices.create');
+        Route::get('/{invoice}',[InvoiceController::class,'show'])->name('dashboard.invoices.show');
+        Route::get('/{invoice}/editar',[InvoiceController::class,'edit'])->name('dashboard.invoices.edit');
+
+        Route::post('/',[InvoiceController::class,'store'])->name('dashboard.invoices.store');
+        Route::put('/',[InvoiceController::class,'update'])->name('dashboard.invoices.update');
+        Route::delete('/{invoice}',[InvoiceController::class,'destroy'])->name('dashboard.invoices.destroy');
         
     });
 

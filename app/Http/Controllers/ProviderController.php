@@ -16,7 +16,7 @@ class ProviderController extends Controller
     public function index()
     {
         return \view('dashboard.financeiro.providers.index',[
-            'providers' => Provider::all()
+            'providers' => Provider::all(),
         ]);
     }
 

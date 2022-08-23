@@ -256,7 +256,7 @@ return [
                 ],
                 [
                     'text' => 'NFs',
-                    'url'  => '#'
+                    'route' => 'dashboard.invoices.index'
                 ],
                 [
                     'text' => 'Fornecedores',
